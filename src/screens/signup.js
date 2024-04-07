@@ -3,13 +3,13 @@ import React from 'react'
 import { useState } from 'react';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { getFormattedDateFull } from "../screens/helpers/dayjs"
-
+import {Ionicons} from "@expo/vector-icons"
 
 
 export default function () {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [DobVale, setDobValue] = useState("");
-
+  const [gender, setGender] = useState("Female");
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
@@ -22,6 +22,13 @@ export default function () {
     setDobValue(date.toString());
 
     hideDatePicker();
+  };
+  const onFemalePressed =()=>{
+    setGender("Female")
+
+  };
+  const onMalePressed =()=>{
+    setGender("Male")
   };
  
   return (
@@ -42,13 +49,43 @@ export default function () {
       {DobVale === "" ? "DOB": getFormattedDateFull(DobVale)}
      </Text>
      </Pressable>
-      </View> 
+     <View className={"flex flex-row justify-between p-4"}>
+          <Text>Gender: </Text>
+
+          <TouchableOpacity
+            onPress={onMalePressed}
+            className={"flex flex-row items-center"}
+          >
+            <Ionicons
+              name={gender === "Male" ? "radio-button-on" : "radio-button-off"}
+              size={25}
+              color={"blue"}
+            />
+             <Text>Male</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity className={"flex flex-row items-center "} onPress={onFemalePressed}>
+          <Ionicons name={gender=== "Female" ? "radio-button-on": "radio-button-off"}
+          size={25}
+          color={"pink"}/>
+           <Text>Female</Text>
+          </TouchableOpacity>
+          </View>
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="date"
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
       />
+      <View className={"flex-none p-5"}>
+        <TouchableOpacity className={"p-5 bg-green-300 rounded-md items-center"}>
+          <Text className={"text-lg text-green-800"}>Sign up</Text>
+        </TouchableOpacity>
+      </View>
+      </View> 
+      
+      
+      
     </View>
     
   )
