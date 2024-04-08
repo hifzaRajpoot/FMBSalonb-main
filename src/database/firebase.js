@@ -1,15 +1,22 @@
 
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCXKQDQ2B0Uy0ghRXLl60pkqiwwIIQnnQQ",
-  authDomain: "fmbsalon.firebaseapp.com",
-  projectId: "fmbsalon",
-  storageBucket: "fmbsalon.appspot.com",
-  messagingSenderId: "125588782275",
-  appId: "1:125588782275:web:546601626ad22daa927676",
-  measurementId: "G-2CQ481ZSKW"
+  apiKey: "AIzaSyBuJbkZG4dynLwXBL-fKKHAC-wnVn5lhY8",
+  authDomain: "madpractice-4a4fb.firebaseapp.com",
+  projectId: "madpractice-4a4fb",
+  storageBucket: "madpractice-4a4fb.appspot.com",
+  messagingSenderId: "935457721180",
+  appId: "1:935457721180:web:4340992913d033487d8f99",
+  measurementId: "G-EERNLF9H3G"
 };
+
+
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const firestoreConfig = getFirestore(app);
+
+
+export { auth, firestoreConfig};
